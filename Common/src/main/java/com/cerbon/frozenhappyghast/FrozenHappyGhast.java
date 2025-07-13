@@ -1,5 +1,6 @@
 package com.cerbon.frozenhappyghast;
 
+import com.cerbon.frozenhappyghast.item.FHGItems;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
@@ -9,5 +10,7 @@ public class FrozenHappyGhast {
 
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public static void init() {}
+	public static void init() {
+		FHGItems.register();
+	}
 }
