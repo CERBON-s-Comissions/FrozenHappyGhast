@@ -1,6 +1,6 @@
-package com.cerbon.ml_template.platform;
+package com.cerbon.frozenhappyghast.platform;
 
-import com.cerbon.ml_template.ModName;
+import com.cerbon.frozenhappyghast.FrozenHappyGhast;
 
 import java.util.ServiceLoader;
 
@@ -10,7 +10,7 @@ public class Services {
         final T loadedService = ServiceLoader.load(clazz)
                 .findFirst()
                 .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
-        ModName.LOGGER.debug("Loaded {} for service {}", loadedService, clazz);
+        FrozenHappyGhast.LOGGER.debug("Loaded {} for service {}", loadedService, clazz);
         return loadedService;
     }
 }

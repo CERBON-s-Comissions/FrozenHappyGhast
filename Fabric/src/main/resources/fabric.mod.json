@@ -18,10 +18,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cerbon.ml_template.fabric.ModNameFabric"
+      "com.cerbon.frozenhappyghast.fabric.FrozenHappyGhastFabric"
     ],
     "client": [
-      "com.cerbon.ml_template.fabric.ModNameFabric"
+      "com.cerbon.frozenhappyghast.fabric.FrozenHappyGhastFabric"
     ]
   },
   "mixins": [

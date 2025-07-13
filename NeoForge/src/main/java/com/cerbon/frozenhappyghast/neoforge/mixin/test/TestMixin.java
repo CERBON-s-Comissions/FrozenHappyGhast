@@ -1,6 +1,6 @@
-package com.cerbon.ml_template.neoforge.mixin.test;
+package com.cerbon.frozenhappyghast.neoforge.mixin.test;
 
-import com.cerbon.ml_template.ModName;
+import com.cerbon.frozenhappyghast.FrozenHappyGhast;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.main.GameConfig;
 import org.spongepowered.asm.mixin.Mixin;
@@ -14,6 +14,6 @@ public abstract class TestMixin {
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void sendMessageIfWorking(GameConfig gameConfig, CallbackInfo ci) {
-        ModName.LOGGER.info("NeoForge only mixins are working for {}!",  ModName.MOD_NAME);
+        FrozenHappyGhast.LOGGER.info("NeoForge only mixins are working for {}!",  FrozenHappyGhast.MOD_NAME);
     }
 }

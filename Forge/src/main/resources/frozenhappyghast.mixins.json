@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.cerbon.ml_template.neoforge.mixin",
+  "package": "com.cerbon.frozenhappyghast.forge.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
   ],
