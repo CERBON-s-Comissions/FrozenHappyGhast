@@ -14,7 +14,6 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -22,8 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(HappyGhast.class)
 public abstract class HappyGhastMixin extends Animal implements IHappyGhastMixin {
-    @Shadow public abstract void tick();
-
     @Unique private boolean fhg$isFrozen = false;
     @Unique private float fhg$xRotFrozen = 0;
     @Unique private float fhg$yRotFrozen = 0;
