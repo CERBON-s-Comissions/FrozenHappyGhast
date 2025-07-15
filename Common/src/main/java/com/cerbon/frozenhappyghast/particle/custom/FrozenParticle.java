@@ -8,20 +8,30 @@ import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Random;
+
 public class FrozenParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
 
+    private static final Random rand = new Random();
+
     protected FrozenParticle(ClientLevel clientLevel, SpriteSet sprites, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.gravity = 0.225F;
+        this.gravity = 0.1F;
         this.friction = 1.0F;
         this.sprites = sprites;
-        this.xd = xSpeed + (Math.random() * 2.0 - 1.0) * 0.05F;
-        this.yd = ySpeed + (Math.random() * 2.0 - 1.0) * 0.05F;
-        this.zd = zSpeed + (Math.random() * 2.0 - 1.0) * 0.05F;
+        this.xd = 0;
+        this.yd = 0;
+        this.zd = 0;
         this.quadSize = 0.1F * (this.random.nextFloat() * this.random.nextFloat() * 1.0F + 1.0F);
-        this.lifetime = (int)(16.0 / (this.random.nextFloat() * 0.8 + 0.2)) + 6;
+        this.lifetime = range(60, 100);
         this.setSpriteFromAge(sprites);
+    }
+
+    public static int range(int min, int max) {
+        if (min > max) throw new IllegalArgumentException("Minimum is greater than maximum");
+        int range = max - min;
+        return min + rand.nextInt(range);
     }
 
     @Override

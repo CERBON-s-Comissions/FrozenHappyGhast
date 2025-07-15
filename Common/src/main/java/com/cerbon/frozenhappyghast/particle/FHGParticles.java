@@ -1,7 +1,6 @@
 package com.cerbon.frozenhappyghast.particle;
 
 import com.cerbon.frozenhappyghast.FrozenHappyGhast;
-import com.cerbon.frozenhappyghast.particle.custom.FHGSimpleParticleType;
 import com.cerbon.frozenhappyghast.registry.RegistryEntry;
 import com.cerbon.frozenhappyghast.registry.ResourcefulRegistries;
 import com.cerbon.frozenhappyghast.registry.ResourcefulRegistry;
@@ -15,9 +14,9 @@ public class FHGParticles {
             FrozenHappyGhast.MOD_ID
     );
 
-    public static final RegistryEntry<ParticleType<SimpleParticleType>> FROZEN_PARTICLE = PARTICLES.register(
+    public static final RegistryEntry<SimpleParticleType> FROZEN_PARTICLE = PARTICLES.register(
             "frozen_particle",
-            () -> new FHGSimpleParticleType(true)
+            () -> new SimpleParticleType(true)
     );
 
     public static void register() {

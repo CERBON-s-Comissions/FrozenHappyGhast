@@ -1,11 +1,13 @@
 package com.cerbon.frozenhappyghast.mixin;
 
+import com.cerbon.frozenhappyghast.particle.FHGParticles;
 import com.cerbon.frozenhappyghast.util.mixin.IHappyGhastMixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.HappyGhast;
@@ -73,6 +75,60 @@ public abstract class HappyGhastMixin extends Animal implements IHappyGhastMixin
     private void fhg$tick(CallbackInfo ci) {
         if (fhg$isFrozen() && this.isBaby()) {
             this.forceSetRotation(fhg$yRotFrozen, fhg$xRotFrozen);
+        }
+
+        if (fhg$isFrozen() && this.level().getGameTime() % 80 == 0 && this.level() instanceof ServerLevel serverLevel) {
+            fhg$spawnFrozenParticles(serverLevel);
+        }
+    }
+
+    @Unique
+    private void fhg$spawnFrozenParticles(ServerLevel level) {
+        double entityWidth = this.getBbWidth();
+        double entityHeight = this.getBbHeight();
+
+        int particleCount = !this.isBaby() ? 8 + this.random.nextInt(5) : 2 + this.random.nextInt(2);
+
+        for (int i = 0; i < particleCount; i++) {
+            double offsetX, offsetY, offsetZ;
+
+            // Randomly choose to spawn at sides or bottom
+            if (this.random.nextFloat() < 0.7F) {
+                int side = this.random.nextInt(4);
+                switch (side) {
+                    case 0: // Left side
+                        offsetX = -(entityWidth / 2.0) - 0.1;
+                        offsetZ = (this.random.nextFloat() - 0.5F) * entityWidth;
+                        break;
+                    case 1: // Right side
+                        offsetX = (entityWidth / 2.0) + 0.1;
+                        offsetZ = (this.random.nextFloat() - 0.5F) * entityWidth;
+                        break;
+                    case 2: // Front side
+                        offsetZ = -(entityWidth / 2.0) - 0.1;
+                        offsetX = (this.random.nextFloat() - 0.5F) * entityWidth;
+                        break;
+                    default: // Back side
+                        offsetZ = (entityWidth / 2.0) + 0.1;
+                        offsetX = (this.random.nextFloat() - 0.5F) * entityWidth;
+                        break;
+                }
+                // Random height along the sides
+                offsetY = this.random.nextFloat() * (entityHeight * 0.3);
+            } else {
+                // Spawn at the bottom
+                offsetX = (this.random.nextFloat() - 0.5F) * entityWidth * 0.8;
+                offsetY = -0.1; // Just below the entity
+                offsetZ = (this.random.nextFloat() - 0.5F) * entityWidth * 0.8;
+            }
+
+            double particleX = this.getX() + offsetX;
+            double particleY = this.getY() + offsetY;
+            double particleZ = this.getZ() + offsetZ;
+
+            level.sendParticles(FHGParticles.FROZEN_PARTICLE.get(),
+                particleX, particleY, particleZ, 1,
+                0, 0, 0, 0);
         }
     }
 
