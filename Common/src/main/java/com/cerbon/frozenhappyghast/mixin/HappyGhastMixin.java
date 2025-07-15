@@ -73,12 +73,12 @@ public abstract class HappyGhastMixin extends Animal implements IHappyGhastMixin
 
     @Inject(method = "tick", at = @At("TAIL"))
     private void fhg$tick(CallbackInfo ci) {
-        if (fhg$isFrozen() && this.isBaby()) {
-            this.forceSetRotation(fhg$yRotFrozen, fhg$xRotFrozen);
-        }
+        if (fhg$isFrozen()) {
+            if (this.isBaby())
+                this.forceSetRotation(fhg$yRotFrozen, fhg$xRotFrozen);
 
-        if (fhg$isFrozen() && this.level().getGameTime() % 80 == 0 && this.level() instanceof ServerLevel serverLevel) {
-            fhg$spawnFrozenParticles(serverLevel);
+            if (this.level().getGameTime() % 80 == 0 && this.level() instanceof ServerLevel serverLevel)
+                fhg$spawnFrozenParticles(serverLevel);
         }
     }
 
