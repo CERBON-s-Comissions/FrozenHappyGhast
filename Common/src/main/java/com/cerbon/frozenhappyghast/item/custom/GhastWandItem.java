@@ -8,6 +8,7 @@ import net.minecraft.world.entity.animal.HappyGhast;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 public class GhastWandItem extends Item {
@@ -24,5 +25,15 @@ public class GhastWandItem extends Item {
         happyGhastMixin.fhg$setFrozen(!happyGhastMixin.fhg$isFrozen());
 
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public @NotNull InteractionResult use(Level level, Player player, InteractionHand hand) {
+        if (player.getVehicle() != null && player.getVehicle() instanceof HappyGhast happyGhast) {
+            IHappyGhastMixin happyGhastMixin = (IHappyGhastMixin) happyGhast;
+            happyGhastMixin.fhg$setFrozen(!happyGhastMixin.fhg$isFrozen());
+        }
+
+        return super.use(level, player, hand);
     }
 }
