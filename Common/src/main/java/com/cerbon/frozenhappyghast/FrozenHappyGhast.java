@@ -1,5 +1,6 @@
 package com.cerbon.frozenhappyghast;
 
+import com.cerbon.frozenhappyghast.creative_tabs.FHGCreativeTabs;
 import com.cerbon.frozenhappyghast.item.FHGItems;
 import com.cerbon.frozenhappyghast.particle.FHGParticles;
 import com.mojang.logging.LogUtils;
@@ -14,5 +15,6 @@ public class FrozenHappyGhast {
 	public static void init() {
 		FHGItems.register();
 		FHGParticles.register();
+		FHGCreativeTabs.register();
 	}
 }
