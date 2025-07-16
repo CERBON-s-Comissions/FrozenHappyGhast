@@ -1,5 +1,6 @@
 package com.cerbon.frozenhappyghast.particle.custom;
 
+import com.cerbon.frozenhappyghast.util.RandomUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -8,12 +9,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
-
 public class FrozenParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
-
-    private static final Random rand = new Random();
 
     protected FrozenParticle(ClientLevel clientLevel, SpriteSet sprites, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
         super(clientLevel, x, y, z, xSpeed, ySpeed, zSpeed);
@@ -24,14 +21,8 @@ public class FrozenParticle extends TextureSheetParticle {
         this.yd = 0;
         this.zd = 0;
         this.quadSize = 0.1F * (this.random.nextFloat() * this.random.nextFloat() * 1.0F + 1.0F);
-        this.lifetime = range(60, 100);
+        this.lifetime = RandomUtil.range(60, 100);
         this.setSpriteFromAge(sprites);
-    }
-
-    public static int range(int min, int max) {
-        if (min > max) throw new IllegalArgumentException("Minimum is greater than maximum");
-        int range = max - min;
-        return min + rand.nextInt(range);
     }
 
     @Override
