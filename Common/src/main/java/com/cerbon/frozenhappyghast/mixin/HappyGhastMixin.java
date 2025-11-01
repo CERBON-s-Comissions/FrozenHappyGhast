@@ -1,19 +1,18 @@
 package com.cerbon.frozenhappyghast.mixin;
 
+import com.blackgear.vanillabackport.common.level.entities.happyghast.HappyGhast;
 import com.cerbon.frozenhappyghast.particle.FHGParticles;
 import com.cerbon.frozenhappyghast.util.mixin.IHappyGhastMixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.HappyGhast;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -43,21 +42,24 @@ public abstract class HappyGhastMixin extends Animal implements IHappyGhastMixin
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
-    private void fhg$saveAdditional(ValueOutput valueOutput, CallbackInfo ci) {
-        valueOutput.putBoolean(fhg$isFrozenTag, fhg$isFrozen);
-        valueOutput.putFloat(fhg$xRotFrozenTag, fhg$xRotFrozen);
-        valueOutput.putFloat(fhg$yRotFrozenTag, fhg$yRotFrozen);
+    private void fhg$saveAdditional(CompoundTag tag, CallbackInfo ci) {
+        tag.putBoolean(fhg$isFrozenTag, fhg$isFrozen);
+        tag.putFloat(fhg$xRotFrozenTag, fhg$xRotFrozen);
+        tag.putFloat(fhg$yRotFrozenTag, fhg$yRotFrozen);
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
-    private void fhg$readAdditional(ValueInput valueInput, CallbackInfo ci) {
-        fhg$isFrozen = valueInput.getBooleanOr(fhg$isFrozenTag, fhg$isFrozen);
-        fhg$xRotFrozen = valueInput.getFloatOr(fhg$xRotFrozenTag, fhg$xRotFrozen);
-        fhg$yRotFrozen = valueInput.getFloatOr(fhg$yRotFrozenTag, fhg$yRotFrozen);
+    private void fhg$readAdditional(CompoundTag tag, CallbackInfo ci) {
+        if (tag.contains(fhg$isFrozenTag))
+            fhg$isFrozen = tag.getBoolean(fhg$isFrozenTag);
+        if (tag.contains(fhg$xRotFrozenTag))
+            fhg$xRotFrozen = tag.getFloat(fhg$xRotFrozenTag);
+        if (tag.contains(fhg$yRotFrozenTag))
+            fhg$yRotFrozen = tag.getFloat(fhg$yRotFrozenTag);
         ((HappyGhast) (Object) this).getEntityData().set(FHG_IS_FROZEN, fhg$isFrozen);
     }
 
-    @WrapOperation(method = "isOnStillTimeout", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/HappyGhast;staysStill()Z"))
+    @WrapOperation(method = "isOnStillTimeout", at = @At(value = "INVOKE", target = "Lcom/blackgear/vanillabackport/common/level/entities/happyghast/HappyGhast;staysStill()Z"))
     private boolean fhg$isOnStillTimeout(HappyGhast instance, Operation<Boolean> original) {
         if (fhg$isFrozen()) return true;
         return original.call(instance);
@@ -74,8 +76,13 @@ public abstract class HappyGhastMixin extends Animal implements IHappyGhastMixin
     @Inject(method = "tick", at = @At("TAIL"))
     private void fhg$tick(CallbackInfo ci) {
         if (fhg$isFrozen()) {
-            if (this.isBaby())
-                this.forceSetRotation(fhg$yRotFrozen, fhg$xRotFrozen);
+            if (this.isBaby()) {
+                this.setYRot(fhg$yRotFrozen);
+                this.setYHeadRot(fhg$yRotFrozen);
+                this.setXRot(fhg$xRotFrozen);
+                this.yRotO = this.getYRot();
+                this.xRotO = this.getXRot();
+            }
 
             if (this.level().getGameTime() % 80 == 0 && this.level() instanceof ServerLevel serverLevel)
                 fhg$spawnFrozenParticles(serverLevel);

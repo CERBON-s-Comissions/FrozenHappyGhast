@@ -7,8 +7,7 @@
     "HappyGhastMixin"
   ],
   "client": [
-    "HappyGhastRendererMixin",
-    "HappyGhastRenderStateMixin"
+    "HappyGhastRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

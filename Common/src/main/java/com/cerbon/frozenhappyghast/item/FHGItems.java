@@ -19,7 +19,7 @@ public class FHGItems {
 
     public static final RegistryEntry<GhastWandItem> GHAST_WAND = ITEMS.register(
             "ghast_wand",
-            () -> new GhastWandItem(new Item.Properties().setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(FrozenHappyGhast.MOD_ID, "ghast_wand"))))
+            () -> new GhastWandItem(new Item.Properties())
     );
 
     public static void register() {

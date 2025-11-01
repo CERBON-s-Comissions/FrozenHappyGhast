@@ -20,13 +20,11 @@ public class FrozenHappyGhastFabric implements ModInitializer, ClientModInitiali
     public void onInitialize() {
         FrozenHappyGhast.init();
 
-        TradeOfferHelper.registerWanderingTraderOffers(tradeBuilder -> tradeBuilder.addOffersToPool(
-                TradeOfferHelper.WanderingTraderOffersBuilder.SELL_SPECIAL_ITEMS_POOL,
+        TradeOfferHelper.registerWanderingTraderOffers(1, itemListings -> itemListings.add(
                 (trader, random) -> new MerchantOffer(
                         new ItemCost(() -> Items.EMERALD, RandomUtil.range(8, 17)),
                         new ItemStack(FHGItems.GHAST_WAND.get()),
-                        3, 12, 0.15F
-                )
+                        3, 12, 0.15F)
         ));
     }
 

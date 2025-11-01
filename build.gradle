@@ -62,6 +62,7 @@ subprojects {
                     minecraft_version_range: minecraft_version_range_fabric,
                     fabric_loader_version_range: fabric_loader_version_range,
                     cerbons_api_version_range_fabric: cerbons_api_version_range_fabric,
+                    vanilla_backport_version_range_fabric: vanilla_backport_version_range_fabric,
                     source_code_url: source_code_url
             ]
             filePatterns = ["fabric.mod.json"]
@@ -71,7 +72,8 @@ subprojects {
                     minecraft_version_range: minecraft_version_range_forge,
                     forge_version_range: forge_version_range,
                     forge_loader_version_range: forge_loader_version_range,
-                    cerbons_api_version_range_forge: cerbons_api_version_range_forge
+                    cerbons_api_version_range_forge: cerbons_api_version_range_forge,
+                    vanilla_backport_version_range_forge: vanilla_backport_version_range_forge
             ]
             filePatterns = ["META-INF/mods.toml", "pack.mcmeta"]
 
@@ -80,7 +82,8 @@ subprojects {
                     minecraft_version_range: minecraft_version_range_forge,
                     neo_version_range: neo_version_range,
                     neo_loader_version_range: neo_loader_version_range,
-                    cerbons_api_version_range_forge: cerbons_api_version_range_forge
+                    cerbons_api_version_range_forge: cerbons_api_version_range_forge,
+                    vanilla_backport_version_range_forge: vanilla_backport_version_range_forge
             ]
             filePatterns = ["META-INF/neoforge.mods.toml", "pack.mcmeta"]
         }

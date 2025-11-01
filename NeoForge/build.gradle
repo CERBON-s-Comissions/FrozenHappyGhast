@@ -30,7 +30,8 @@ dependencies {
     neoForge "net.neoforged:neoforge:${neo_version}"
 
     // NeoForge Dependencies
-    //modImplementation "com.cerbon:cerbons_api-neoforge-${minecraft_version}:${cerbons_api_version}"
+    implementation "curse.maven:platform-997634:6677047"
+    modImplementation "com.blackgear.vanillabackport.core:vanillabackport-neoforge-${minecraft_version}:${vanilla_backport_version}"
 
     implementation include("io.github.llamalad7:mixinextras-neoforge:${mixin_extras_version}")
 

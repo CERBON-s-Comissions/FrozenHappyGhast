@@ -1,10 +1,11 @@
 package com.cerbon.frozenhappyghast.item.custom;
 
+import com.blackgear.vanillabackport.common.level.entities.happyghast.HappyGhast;
 import com.cerbon.frozenhappyghast.util.mixin.IHappyGhastMixin;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.HappyGhast;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -28,7 +29,7 @@ public class GhastWandItem extends Item {
     }
 
     @Override
-    public @NotNull InteractionResult use(Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (player.getVehicle() != null && player.getVehicle() instanceof HappyGhast happyGhast) {
             IHappyGhastMixin happyGhastMixin = (IHappyGhastMixin) happyGhast;
             happyGhastMixin.fhg$setFrozen(!happyGhastMixin.fhg$isFrozen());

@@ -30,6 +30,7 @@
   ],
   "depends": {
     "fabricloader": "${fabric_loader_version_range}",
-    "minecraft": "${minecraft_version_range}"
+    "minecraft": "${minecraft_version_range}",
+    "vanillabackport": "${vanilla_backport_version_range_fabric}"
   }
 }
