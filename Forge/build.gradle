@@ -24,13 +24,15 @@ dependencies {
     forge "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     // Forge Dependencies
-    modImplementation "com.cerbon:cerbons_api-forge-${minecraft_version}:${cerbons_api_version}"
+    //modImplementation "com.cerbon:cerbons_api-forge-${minecraft_version}:${cerbons_api_version}"
+    modImplementation "curse.maven:platform-997634:6673724"
+    modImplementation "com.blackgear.vanillabackport.core:vanillabackport-forge-${minecraft_version}:${vanilla_backport_version}"
 
     implementation include("io.github.llamalad7:mixinextras-forge:${mixin_extras_version}")
 
     // Useful Mods
-    modCompileOnlyApi "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
-    modRuntimeOnly ("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive false }
+    //modCompileOnlyApi "mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"
+    //modRuntimeOnly ("mezz.jei:jei-${minecraft_version}-forge:${jei_version}") { transitive false }
 
     //modImplementation "curse.maven:jade-324717:${jade_version_forge}"
 

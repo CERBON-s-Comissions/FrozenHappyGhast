@@ -19,8 +19,8 @@ public abstract class HappyGhastRendererMixin {
     @Shadow @Final private static ResourceLocation GHAST_BABY_LOCATION;
     @Shadow @Final private static ResourceLocation GHAST_LOCATION;
 
-    @Unique private static final ResourceLocation FROZEN_GHAST_LOCATION = ResourceLocation.fromNamespaceAndPath(FrozenHappyGhast.MOD_ID, "textures/entity/ghast/frozen_happy_ghast.png");
-    @Unique private static final ResourceLocation FROZEN_GHAST_BABY_LOCATION = ResourceLocation.fromNamespaceAndPath(FrozenHappyGhast.MOD_ID, "textures/entity/ghast/frozen_happy_ghast_baby.png");
+    @Unique private static final ResourceLocation FROZEN_GHAST_LOCATION = new ResourceLocation(FrozenHappyGhast.MOD_ID, "textures/entity/ghast/frozen_happy_ghast.png");
+    @Unique private static final ResourceLocation FROZEN_GHAST_BABY_LOCATION = new ResourceLocation(FrozenHappyGhast.MOD_ID, "textures/entity/ghast/frozen_happy_ghast_baby.png");
 
     @Inject(method = "getTextureLocation(Lcom/blackgear/vanillabackport/common/level/entities/happyghast/HappyGhast;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"), cancellable = true)
     private void fhg$getTextureLocation(HappyGhast entity, CallbackInfoReturnable<ResourceLocation> cir) {

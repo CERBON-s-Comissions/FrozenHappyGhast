@@ -37,8 +37,8 @@ public abstract class HappyGhastMixin extends Animal implements IHappyGhastMixin
     }
 
     @Inject(method = "defineSynchedData", at = @At("TAIL"))
-    private void fhg$defineSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(FHG_IS_FROZEN, false);
+    private void fhg$defineSynchedData(CallbackInfo ci) {
+        this.entityData.define(FHG_IS_FROZEN, false);
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))

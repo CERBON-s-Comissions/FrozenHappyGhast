@@ -28,8 +28,8 @@ issueTrackerURL="${issues_url}"
    side="BOTH"
 
 [[dependencies.${mod_id}]]
-   modId="cerbons_api"
+   modId="vanillabackport"
    mandatory=true
-   versionRange="${cerbons_api_version_range_forge}"
+   versionRange="${vanilla_backport_version_range_forge}"
    ordering="NONE"
    side="BOTH"

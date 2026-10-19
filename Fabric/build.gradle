@@ -20,7 +20,7 @@ dependencies {
     modApi "net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+${minecraft_version}"
 
     // Fabric Dependencies
-    modImplementation "curse.maven:platform-997634:6677051"
+    modImplementation "curse.maven:platform-997634:6673723"
     modImplementation "com.blackgear.vanillabackport.core:vanillabackport-fabric-${minecraft_version}:${vanilla_backport_version}"
 
     //modApi "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cardinal_components_version}" // Even though Cardinal Components is shipped with Cerbons API it needs to exist here too or Fabric will complain.

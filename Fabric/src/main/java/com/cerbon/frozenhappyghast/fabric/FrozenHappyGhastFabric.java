@@ -11,7 +11,6 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 
 public class FrozenHappyGhastFabric implements ModInitializer, ClientModInitializer {
@@ -22,7 +21,7 @@ public class FrozenHappyGhastFabric implements ModInitializer, ClientModInitiali
 
         TradeOfferHelper.registerWanderingTraderOffers(1, itemListings -> itemListings.add(
                 (trader, random) -> new MerchantOffer(
-                        new ItemCost(() -> Items.EMERALD, RandomUtil.range(8, 17)),
+                        new ItemStack(Items.EMERALD, RandomUtil.range(8, 17)),
                         new ItemStack(FHGItems.GHAST_WAND.get()),
                         3, 12, 0.15F)
         ));
