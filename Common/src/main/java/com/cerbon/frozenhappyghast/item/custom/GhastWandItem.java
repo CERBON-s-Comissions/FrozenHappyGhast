@@ -1,6 +1,6 @@
 package com.cerbon.frozenhappyghast.item.custom;
 
-import com.blackgear.vanillabackport.common.level.entities.happyghast.HappyGhast;
+import com.blackgear.vanillabackport.common.level.entities.mob.animal.happy_ghast.HappyGhast;
 import com.cerbon.frozenhappyghast.util.mixin.IHappyGhastMixin;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;

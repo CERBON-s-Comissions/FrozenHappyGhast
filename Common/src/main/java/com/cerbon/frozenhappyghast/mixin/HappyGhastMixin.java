@@ -1,6 +1,6 @@
 package com.cerbon.frozenhappyghast.mixin;
 
-import com.blackgear.vanillabackport.common.level.entities.happyghast.HappyGhast;
+import com.blackgear.vanillabackport.common.level.entities.mob.animal.happy_ghast.HappyGhast;
 import com.cerbon.frozenhappyghast.particle.FHGParticles;
 import com.cerbon.frozenhappyghast.util.mixin.IHappyGhastMixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -59,7 +59,7 @@ public abstract class HappyGhastMixin extends Animal implements IHappyGhastMixin
         ((HappyGhast) (Object) this).getEntityData().set(FHG_IS_FROZEN, fhg$isFrozen);
     }
 
-    @WrapOperation(method = "isOnStillTimeout", at = @At(value = "INVOKE", target = "Lcom/blackgear/vanillabackport/common/level/entities/happyghast/HappyGhast;staysStill()Z"))
+    @WrapOperation(method = "isOnStillTimeout", at = @At(value = "INVOKE", target = "Lcom/blackgear/vanillabackport/common/level/entities/mob/animal/happy_ghast/HappyGhast;staysStill()Z"))
     private boolean fhg$isOnStillTimeout(HappyGhast instance, Operation<Boolean> original) {
         if (fhg$isFrozen()) return true;
         return original.call(instance);

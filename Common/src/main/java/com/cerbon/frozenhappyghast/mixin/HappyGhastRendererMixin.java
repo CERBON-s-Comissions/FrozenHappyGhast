@@ -1,8 +1,7 @@
 package com.cerbon.frozenhappyghast.mixin;
 
-
-import com.blackgear.vanillabackport.client.level.entities.renderer.HappyGhastRenderer;
-import com.blackgear.vanillabackport.common.level.entities.happyghast.HappyGhast;
+import com.blackgear.vanillabackport.client.level.renderer.entity.mob.HappyGhastRenderer;
+import com.blackgear.vanillabackport.common.level.entities.mob.animal.happy_ghast.HappyGhast;
 import com.cerbon.frozenhappyghast.FrozenHappyGhast;
 import com.cerbon.frozenhappyghast.util.mixin.IHappyGhastMixin;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +21,7 @@ public abstract class HappyGhastRendererMixin {
     @Unique private static final ResourceLocation FROZEN_GHAST_LOCATION = ResourceLocation.fromNamespaceAndPath(FrozenHappyGhast.MOD_ID, "textures/entity/ghast/frozen_happy_ghast.png");
     @Unique private static final ResourceLocation FROZEN_GHAST_BABY_LOCATION = ResourceLocation.fromNamespaceAndPath(FrozenHappyGhast.MOD_ID, "textures/entity/ghast/frozen_happy_ghast_baby.png");
 
-    @Inject(method = "getTextureLocation(Lcom/blackgear/vanillabackport/common/level/entities/happyghast/HappyGhast;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getTextureLocation(Lcom/blackgear/vanillabackport/common/level/entities/mob/animal/happy_ghast/HappyGhast;)Lnet/minecraft/resources/ResourceLocation;", at = @At("HEAD"), cancellable = true)
     private void fhg$getTextureLocation(HappyGhast entity, CallbackInfoReturnable<ResourceLocation> cir) {
         IHappyGhastMixin happyGhastMixin = (IHappyGhastMixin) entity;
 
